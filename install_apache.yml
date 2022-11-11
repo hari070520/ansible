@@ -2,23 +2,9 @@
 
 - hosts: client
   become: true
-  gather_facts: true
-  tasks:
+  roles:
+  - client
 
-  - name: copy default html file
-    tags: install
-    copy:
-      src: default_site.html
-      dest: /var/www/html/index.html
-      owner: root
-      group: root
-      mode:  0644
       
-  - name: install apache2 and php packages,update repository index
-    tags: install
-    apt:
-      name:
-      - "{{ apache_package }}"
-      - libapache2-mod-php
-      state: latest
-      update_cache: yes 
+    
+      
