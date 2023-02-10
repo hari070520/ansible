@@ -22,20 +22,12 @@
       state: latest
       update_cache: yes
       
-  - name: change timeout settingsin apache conf file
-    tags: install
-    lineinfile:
-      path: /etc/apache2/apache2.conf
-      regexp: '^Timeout'
-      line: Timeout 305
-    register: apache_change
-    
-  - name: restart apache2
-    tags: install
-    service:
-      name: apache2
-      state: restarted
-    when: apache_change.changed   
-      
+  - name: install python
+    tags: python
+    apt:
+      name:
+      state: latest
+      update_cache: yes
+      force_apt_get: true      
     
       
